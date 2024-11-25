@@ -12,7 +12,7 @@ The CYD board can be had for around $12-$14 USD and has a bunch of great feature
 Read more about the CYD board here: https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display
 
 # Basics of this design (so far)
-![Grid system for positioning data on the display](src/displays/images/CYD_Display_Scaffold.svg?raw=true)
+![Grid system for positioning data on the display](src/displays/images/CYD_Display_Scaffold.svg?raw=false)
 
 # Development Environment
 Here I will describe the basics of how I set up my development environment. I use a laptop with Linux, docker and docker-compose installed. This way I can run a temporary Signal K server for development away from my boats' network and server. I didn't want to have to only work on this project while on my boat. I have much more freedom now to work on this project from anywhere I can drag my laptop to.
