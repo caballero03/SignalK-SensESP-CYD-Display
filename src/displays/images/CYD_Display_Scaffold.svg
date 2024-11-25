@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="320"
-   height="240"
-   viewBox="0 0 84.666665 63.5"
+   width="334.61285"
+   height="251.06924"
+   viewBox="0 0 88.532983 66.428738"
    version="1.1"
    id="svg1"
    sodipodi:docname="CYD_Display_Scaffold.svg"
@@ -25,8 +25,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="2.3894317"
-     inkscape:cx="159.87065"
-     inkscape:cy="119.90299"
+     inkscape:cx="174.51849"
+     inkscape:cy="130.78424"
      inkscape:window-width="1920"
      inkscape:window-height="1015"
      inkscape:window-x="0"
@@ -36,7 +36,8 @@
      id="defs1" /><g
      inkscape:label="background"
      inkscape:groupmode="layer"
-     id="layer1"><image
+     id="layer1"
+     transform="translate(3.8343979,2.8544076)"><image
        width="88.001411"
        height="173.81374"
        preserveAspectRatio="none"
@@ -47,7 +48,7 @@
        sodipodi:insensitive="true"
        style="display:none" /></g><g
      inkscape:label="GridCartesian:X16:Y16"
-     transform="translate(-0.0342247,-0.0256679)"
+     transform="translate(3.8001732,2.8287397)"
      id="g448"
      style="display:inline"
      sodipodi:insensitive="true"><g
@@ -185,7 +186,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="notes"
-     sodipodi:insensitive="true"><rect
+     sodipodi:insensitive="true"
+     transform="translate(3.8343979,2.8544076)"><rect
        style="fill:#000000;fill-opacity:0.259441;stroke:#d1e045;stroke-width:0.2"
        id="rect448"
        width="15.875"
@@ -556,4 +558,5 @@
          y="-0.73115486">15</tspan></text></g><g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="v1.0 Layout" /></svg>
+     inkscape:label="v1.0 Layout"
+     transform="translate(3.8343979,2.8544076)" /></svg>
