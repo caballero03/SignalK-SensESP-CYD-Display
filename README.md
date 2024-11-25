@@ -21,5 +21,5 @@ Instead, what I did was clone the Signal K server git hub repo and used the dock
 4) vi startup.sh # Edit the last line by adding ``` --sample-nmea0183-data``` at the end. This gives us a repeating boat data stream to use for testing.
 5) docker-compose up -d
 
-
+After you get the Signal K server container up and running, you will need to setup an admin users' credentials. Since I didn't bother to make a volume to store the servers' data, this process would need to be repeated if the container is removed.
 
