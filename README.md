@@ -31,11 +31,11 @@ Here I will describe the basics of how I set up my development environment. I us
 I first tried to pull the signalk-server docker image and run it locally, but there was no easy success so I tried another way. I just didn't have the patience to figure it out. Maybe I'm a little lazy too. :-P
 
 Instead, what I did was clone the Signal K server git hub repo and used the docker-compose.yml file to start a container.
-1) git clone https://github.com/SignalK/signalk-server
-2) cd signalk-server/docker
-3) vi docker-compose.yml # and edit lines 23-25 to remove the comments. This will allow you to edit your local copy of startup.sh in the next step so we can add some sample boat data for development.
-4) vi startup.sh # Edit the last line by adding ``` --sample-nmea0183-data``` at the end. This gives us a repeating boat data stream to use for testing.
-5) docker-compose up -d
+1) ```git clone https://github.com/SignalK/signalk-server```
+2) ```cd signalk-server/docker```
+3) ```vi docker-compose.yml``` # and edit lines 23-25 to remove the comments. This will allow you to edit your local copy of startup.sh in the next step so we can add some sample boat data for development.
+4) ```vi startup.sh``` # Edit the last line by adding ``` --sample-nmea0183-data``` at the end. This gives us a repeating boat data stream to use for testing.
+5) ```docker-compose up -d```
 
 Once the docker container is running, point your browser to ```localhost:3000``` to get to the demo/temporary Signal K server.
 
