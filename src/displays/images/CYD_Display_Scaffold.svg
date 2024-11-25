@@ -46,7 +46,14 @@
        x="-1.701597"
        y="-143.19832"
        sodipodi:insensitive="true"
-       style="display:none" /></g><g
+       style="display:none" /><rect
+       style="display:inline;fill:#ffffff;fill-opacity:0.259441;stroke:none;stroke-width:0.2"
+       id="rect487"
+       width="88.532982"
+       height="66.428734"
+       x="-3.8343978"
+       y="-2.8544075"
+       sodipodi:insensitive="true" /></g><g
      inkscape:label="GridCartesian:X16:Y16"
      transform="translate(3.8001732,2.8287397)"
      id="g448"
@@ -559,4 +566,5 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="v1.0 Layout"
-     transform="translate(3.8343979,2.8544076)" /></svg>
+     transform="translate(3.8343979,2.8544076)"
+     style="display:inline" /></svg>

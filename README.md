@@ -12,7 +12,6 @@ The CYD board can be had for around $12-$14 USD and has a bunch of great feature
 Read more about the CYD board here: https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display
 
 # Basics of this design (so far)
-/CYD_Display_Scaffold.svg
 ![Grid system for positioning data on the display](src/displays/images/CYD_Display_Scaffold.svg?raw=true)
 
 # Development Environment
