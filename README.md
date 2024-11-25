@@ -2,10 +2,10 @@ SignalK-SensESP-CYD-Display
 ===========================
 
 # Intro
-This is my attempt to use a Cheap Yellow Display (ESP32-2432S028R or CYD for short) and SesnsESP ^3.0 for a Signal K server remote touchscreen display. 
+This is my attempt to use a Cheap Yellow Display (ESP32-2432S028R or CYD for short) and SensESP ^3.0 for a Signal K server remote touchscreen display. 
 
 # Hardware
-The CYD board is a low-cost ESP32-based color LCD display with a pixel resolution of 320x240 and a resitive touchscreen. Here I use the display to show various SK data points at appropriate intervals. 
+The CYD board is a low-cost ESP32-based color LCD display with a pixel resolution of 320x240 and a resistive touchscreen. Here I use the display to show various SK data points at appropriate intervals. 
 
 The CYD board can be had for around $12-$14 USD and has a bunch of great features for the price.
 
@@ -17,6 +17,9 @@ Instead of fussing with pixel precision, I chose to divide the 320x240 pixel scr
 Here is an example of several text elements and one VBAR graphical element being positioned on the grid system.
 ![Grid system for positioning data on the display](src/displays/images/CYD_Display_Scaffold.svg?raw=false)
 
+Here is what it looks like currently with some recently added fields from another SensESP project that I will be sharing sometime soonish.
+
+![photo of the Cheap Yellow Display displaying data from an SK server](src/displays/images/photo_of_CYD_SK_Display.JPG?raw=false)
 
 
 # Development Environment
