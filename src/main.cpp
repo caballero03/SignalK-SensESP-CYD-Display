@@ -98,7 +98,7 @@ TS_Point touch_screen_callback() {
 
 void setup() {
   // Some initialization boilerplate when in debug mode...
-  SetupLogging();
+  SetupLogging(ESP_LOG_DEBUG);
 
   // Create a builder object
   SensESPAppBuilder builder;

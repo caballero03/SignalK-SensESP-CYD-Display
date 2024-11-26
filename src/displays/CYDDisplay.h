@@ -143,7 +143,7 @@ class CYDDisplay  : public FloatConsumer, public FloatProducer
 
       if (new_value == ClickTypes::UltraLongSingleClick) {
         // Long clicks reboot the system...
-        ESP.restart();
+        // ESP.restart();
         return;
       }
 
