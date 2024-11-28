@@ -96,6 +96,18 @@ TS_Point touch_screen_callback() {
   return false;
  }
 
+//  TouchEvent touch_screen_button_callback() {
+//   // Empty touchEvent
+//   TouchEvent touchEvent{ TS_Point(), false };
+
+//   if (ts.tirqTouched() && ts.touched()) {
+//     touchEvent.touch = ts.getPoint();
+//     touchEvent.button = (bool)(ts.getPoint().z > 900);
+//   }
+
+//   return touchEvent;
+//  }
+
 void setup() {
   // Some initialization boilerplate when in debug mode...
   SetupLogging(ESP_LOG_DEBUG);
@@ -141,6 +153,8 @@ void setup() {
 
   touch_input->connect_to(cydDisplayControl->touchPoint_);
 
+  // We're just going to treat the touchsceen as one big button for simplicity.
+  // All I really hope to accomplish is allowing a display mode change. Don't need UI widgets, etc.
   auto* touch_button =
       new RepeatSensor<bool>(100, touch_button_callback);
 
@@ -156,6 +170,12 @@ void setup() {
   touch_button
     ->connect_to(click_type)
     ->connect_to(cydDisplayControl->click_consumer_);
+
+
+  // auto* touch = 
+      // new RepeatSensor<TouchEvent>(100, touch_screen_button_callback);
+  
+
   
 
   /////////////////////////////////////////////

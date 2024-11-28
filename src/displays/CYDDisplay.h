@@ -85,6 +85,11 @@ struct DisplayCell {
     float rangeMax;
 };
 
+struct TouchEvent {
+    TS_Point touch;
+    bool button;
+};
+
 namespace sensesp {
 
 class CYDDisplay  : public FloatConsumer, public FloatProducer
@@ -136,10 +141,10 @@ class CYDDisplay  : public FloatConsumer, public FloatProducer
     }};
 
     LambdaConsumer<ClickTypes> click_consumer_{[this](ClickTypes new_value) {
-      // if (!ClickType::is_click(new_value)) {
-      //   // Ignore button presses (we only want interpreted clicks)
-      //   return;
-      // }
+      if (!ClickType::is_click(new_value)) {
+        // Ignore button presses (we only want interpreted clicks)
+        return;
+      }
 
       if (new_value == ClickTypes::UltraLongSingleClick) {
         // Long clicks reboot the system...
@@ -151,13 +156,13 @@ class CYDDisplay  : public FloatConsumer, public FloatProducer
       // this->is_on_ = !this->is_on_;
       // this->emit(this->is_on_);
 
-      // if (new_value == ClickTypes::DoubleClick) {
+      if (new_value == ClickTypes::DoubleClick) {
         // Sync any specified sync paths...
         // for (auto& path : sync_paths_) {
           // ESP_LOGD(__FILENAME__, "Sync status to %s", path.sk_sync_path_.c_str());
           // path.put_request_->set(this->is_on_);
         // }
-      // }
+      }
     }};
 
     void clearDisplay();
