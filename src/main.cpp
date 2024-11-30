@@ -96,17 +96,17 @@ TS_Point touch_screen_callback() {
   return false;
  }
 
-//  TouchEvent touch_screen_button_callback() {
-//   // Empty touchEvent
-//   TouchEvent touchEvent{ TS_Point(), false };
+ TouchEvent touch_screen_button_callback() {
+  // Empty touchEvent
+  TouchEvent touchEvent{ TS_Point(), false };
 
-//   if (ts.tirqTouched() && ts.touched()) {
-//     touchEvent.touch = ts.getPoint();
-//     touchEvent.button = (bool)(ts.getPoint().z > 900);
-//   }
+  if (ts.tirqTouched() && ts.touched()) {
+    touchEvent.touch = ts.getPoint();
+    touchEvent.button = (bool)(ts.getPoint().z > 900);
+  }
 
-//   return touchEvent;
-//  }
+  return touchEvent;
+ }
 
 void setup() {
   // Some initialization boilerplate when in debug mode...
@@ -172,8 +172,8 @@ void setup() {
     ->connect_to(cydDisplayControl->click_consumer_);
 
 
-  // auto* touch = 
-      // new RepeatSensor<TouchEvent>(100, touch_screen_button_callback);
+  auto* touch = 
+      new RepeatSensor<TouchEvent>(100, touch_screen_button_callback);
   
 
   

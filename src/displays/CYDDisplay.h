@@ -68,10 +68,19 @@ enum DisplayType {
   GAUGE
 };
 
+enum DisplayMode {
+  STAY_ON_FULL,               // Backlight on full brightness and stay that way (max brightness and power usage)
+  DIM_FORCE_RED,              // Make the screen red no matter dim level
+  DIM_FORCE_GREEN,            // Make the screen green no matter dim level
+  DIM_AUTO_POWER_SAVE,        // Gradually dim the screen to off/black (with timer) to save power; touch to wake up
+  DIM_AUTO_NIGHT_VISION_RED,  // Automatically change to red mode when dimmed low
+  DIM_AUTO_NIGHT_VISION_GREEN // Automatically change to green mode when dimmed low
+};
+
 enum DisplayColorMode {
-  NORMAL,
-  NIGHT_VISION_RED,
-  NIGHT_VISION_GREEN
+  NORMAL,                     // Display colors as specified
+  NIGHT_VISION_RED,           // Elements displayed in red
+  NIGHT_VISION_GREEN          // Elements displayed in green
 };
 
 struct DisplayCell {
@@ -141,16 +150,47 @@ class CYDDisplay  : public FloatConsumer, public FloatProducer
     }};
 
     LambdaConsumer<ClickTypes> click_consumer_{[this](ClickTypes new_value) {
-      if (!ClickType::is_click(new_value)) {
-        // Ignore button presses (we only want interpreted clicks)
+      // 
+      // if (new_value == ClickTypes::ButtonPress) {
+      //   // 
+        
+      //   return;
+      // }
+
+      // if (new_value == ClickTypes::ButtonRelease) {
+        
+      //   return;
+      // }
+
+      // if (!ClickType::is_click(new_value)) {
+      //   // Ignore button presses (we only want interpreted clicks)
+      //   return;
+      // }
+
+      if (new_value == ClickTypes::SingleClick) {
+        // Regular click selects next mode when in mode edit 
+        // and wakes the screen when in DisplayMode::AUTO_POWER_SAVE
+        
+        return;
+      }
+
+      if (new_value == ClickTypes::LongSingleClick) {
+        // Long click enters display mode editing
+        
         return;
       }
 
       if (new_value == ClickTypes::UltraLongSingleClick) {
-        // Long clicks reboot the system...
-        // ESP.restart();
+        // Ultra long click saves display mode selected, timout ends edit mode and reverts if no ULSC
+        
         return;
       }
+
+      // if (new_value == ClickTypes::UltraLongSingleClick) {
+      //   // Ultra long clicks reboot the system...
+      //   ESP.restart();
+      //   return;
+      // }
 
       // All other click types toggle the current state...
       // this->is_on_ = !this->is_on_;
