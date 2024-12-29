@@ -292,12 +292,13 @@ void sensesp::CYDDisplay::updateDisplay() {
                     }
 
                     case DisplayType::BATT_VBAR: {
-                        // Here we will draw a little battery icon with a VBAR(MBAR?) (and text? on it? below?)
+                        // Here we will draw a little battery icon with a VBAR(MBAR?) Segmented? Discrete? (and text? on it? below?) TODO: What about tanks?
 
                         break;
                     }
 
                     case DisplayType::GAUGE: {
+                        //Here we could draw a dial gauge showing the value visually. Math is hard LOL
                         break;
                     }
                 }

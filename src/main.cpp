@@ -191,6 +191,7 @@ void setup() {
     ->connect_to(new CYDDisplay(&tft, DATA_ROW_5, DATA_COL_3, "ft", 2))
     // Adjust for transducer depth below surface (maybe)
     // ->connect_to(new Linear(1.0, 4.5))
+    // Let's display a vertical bar chart (VBAR) of this value with a width of 100 pixels (font size of 2 ignored, for now)
     ->connect_to(new CYDDisplay(&tft, DisplayType::VBAR, DATA_ROW_13, DATA_COL_10, 100, "ft", 2));
 
   /////////////////////////////////////////////
@@ -269,7 +270,7 @@ void setup() {
   // Start the SPI for the touch screen and init the TS library
   mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS);
   ts.begin(mySpi);
-  ts.setRotation(DISPLAY_ROTATION);
+  ts.setRotation(1);
 
   // Start the tft display and set it to black
   tft.init();
@@ -283,7 +284,8 @@ void setup() {
   ledcAttachPin(LCD_BACK_LIGHT_PIN, LEDC_CHANNEL_0);
 #endif
 
-  // tft.setRotation(DISPLAY_ROTATION); 
+  // This needs to be after init() apparently
+  tft.setRotation(DISPLAY_ROTATION); 
   
   // Clear the screen before writing to it
   tft.fillScreen(TFT_BLACK);
