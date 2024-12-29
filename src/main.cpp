@@ -185,22 +185,22 @@ void setup() {
   auto* depthListener = new FloatSKListener(DBT_sk_path);
 
   depthListener
-    ->connect_to(new CYDDisplay(&tft, 1, 3, "m", 2))
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_1, DATA_COL_3, "m", 2))
     // Convert meters to feet
     ->connect_to(new Linear(METERS_TO_FEET, 0.0))
-    ->connect_to(new CYDDisplay(&tft, 5, 3, "ft", 2))
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_5, DATA_COL_3, "ft", 2))
     // Adjust for transducer depth below surface (maybe)
     // ->connect_to(new Linear(1.0, 4.5))
-    ->connect_to(new CYDDisplay(&tft, DisplayType::VBAR, 13, 10, 100, "ft", 2));
+    ->connect_to(new CYDDisplay(&tft, DisplayType::VBAR, DATA_ROW_13, DATA_COL_10, 100, "ft", 2));
 
   /////////////////////////////////////////////
   // Speed through water
   auto* speedListener = new FloatSKListener("navigation.speedThroughWater");
 
   speedListener
-    ->connect_to(new CYDDisplay(&tft, 15, 0, "m/s", 2))
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_15, DATA_COL_0, "m/s", 2))
     ->connect_to(new Linear(METERS_PER_SEC_TO_KNOTS, 0.0))
-    ->connect_to(new CYDDisplay(&tft, 15, 8, "ks", 2));
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_15, DATA_COL_8, "kts", 2));
 
   ////////////////////////////////////////////
   // Outdoor temperature
@@ -209,10 +209,10 @@ void setup() {
   auto* OutdoorTempListener = new FloatSKListener("environment.outside.temperature");
 
   OutdoorTempListener
-    ->connect_to(new CYDDisplay(&tft, 0, 10, "K", 2))
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_0, DATA_COL_10, "K", 2))
     // Convert K to F
     ->connect_to(new KelvinToFahrenheit())
-    ->connect_to(new CYDDisplay(&tft, 2, 10, "F", 2));
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_2, DATA_COL_10, "F", 2));
   
   ////////////////////////////////////////////
   // Battery voltage
@@ -220,7 +220,7 @@ void setup() {
 
   auto* batteryVoltageListener = new FloatSKListener("electrical.batteries.houseBattery.voltage");
 
-  batteryVoltageListener->connect_to(new CYDDisplay(&tft, 8, 0, "V", 2));
+  batteryVoltageListener->connect_to(new CYDDisplay(&tft, DATA_ROW_8, DATA_COL_0, "V", 2));
   
   ////////////////////////////////////////////
   // Battery current
@@ -228,7 +228,7 @@ void setup() {
 
   auto* batteryCurrentListener = new FloatSKListener("electrical.batteries.houseBattery.current");
 
-  batteryCurrentListener->connect_to(new CYDDisplay(&tft, 8, 4, "A", 2));
+  batteryCurrentListener->connect_to(new CYDDisplay(&tft, DATA_ROW_8, DATA_COL_4, "A", 2));
 
   ////////////////////////////////////////////
   // Automatic Backlight Brightness Control
@@ -252,12 +252,12 @@ void setup() {
 
   lightLevelAnalogInput
     ->connect_to(linearConfig_LDR)
-    // ->connect_to(new CYDDisplay(&tft, 8, 0, "", 2))
+    // ->connect_to(new CYDDisplay(&tft, DATA_ROW_8, DATA_COL_0, "", 2))
     ->connect_to(new BacklightBrightnessInterpreter("/backlight/brightness/curve"))
     // Smooth it out for gradual backlight fades and to avoid fast changes in screen brightness
     ->connect_to(new MovingAverage(10, 1.0))
     // ->connect_to(new Linear(0.0625, 0.0)) // divide by 16
-    ->connect_to(new CYDDisplay(&tft, 12, 0, "<-- PWM", 2))
+    ->connect_to(new CYDDisplay(&tft, DATA_ROW_12, DATA_COL_0, "<-- PWM", 2))
     // ->connect_to(new Linear(16.0, 0.0)) // multiply by 16
     ->connect_to(new RoundToInt())
     ->connect_to(cydDisplayControl->brightness_);

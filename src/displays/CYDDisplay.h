@@ -59,13 +59,25 @@
 #define DATA_COL_1 1
 #define DATA_COL_2 2
 #define DATA_COL_3 3
+#define DATA_COL_4 4
+#define DATA_COL_5 5
+#define DATA_COL_6 6
+#define DATA_COL_7 7
+#define DATA_COL_8 8
+#define DATA_COL_9 9
+#define DATA_COL_10 10
+#define DATA_COL_11 11
+#define DATA_COL_12 12
+#define DATA_COL_13 13
+#define DATA_COL_14 14
+#define DATA_COL_15 15
 
 enum DisplayType {
-  TEXT,
-  HBAR,
-  VBAR,
-  BATT_VBAR,
-  GAUGE
+  TEXT,           // Simple text display (*working*)
+  HBAR,           // Horizontal bar chart (not working)
+  VBAR,           // Vertical bar chart (sortof *working*)
+  BATT_VBAR,      // A battery-shaped bar chart (not working)
+  GAUGE           // A simple gauge dislpay (not yet working)
 };
 
 enum DisplayMode {
