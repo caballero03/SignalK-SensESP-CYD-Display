@@ -29,7 +29,7 @@
 #define SCREEN_HEIGHT 240
 
 // CYD display rotation
-#define DISPLAY_ROTATION 1
+#define DISPLAY_ROTATION 1 // 1 = display in landscape with USB to the right
 
 // TODO: FIX THIS DESCRIPTION Display data cells 128x64 pixels with font size 1 (6x8 chars) makes 4x8 data cell matrix
 // Could be 16 rows of 10 char cells when rotated 90 degrees
@@ -69,12 +69,12 @@ enum DisplayType {
 };
 
 enum DisplayMode {
-  STAY_ON_FULL,               // Backlight on full brightness and stay that way (max brightness and power usage)
+  STAY_ON_FULL,               // Backlight on full brightness and stay that way (max brightness ...and power usage)
   DIM_FORCE_RED,              // Make the screen red no matter dim level
   DIM_FORCE_GREEN,            // Make the screen green no matter dim level
   DIM_AUTO_POWER_SAVE,        // Gradually dim the screen to off/black (with timer) to save power; touch to wake up
-  DIM_AUTO_NIGHT_VISION_RED,  // Automatically change to red mode when dimmed low
-  DIM_AUTO_NIGHT_VISION_GREEN // Automatically change to green mode when dimmed low
+  DIM_AUTO_NIGHT_VISION_RED,  // Automatically change to red mode when dimmed below configured threshold
+  DIM_AUTO_NIGHT_VISION_GREEN // Automatically change to green mode when dimmed below configured threshold
 };
 
 enum DisplayColorMode {

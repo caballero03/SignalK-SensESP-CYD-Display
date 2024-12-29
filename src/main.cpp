@@ -269,7 +269,7 @@ void setup() {
   // Start the SPI for the touch screen and init the TS library
   mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS);
   ts.begin(mySpi);
-  ts.setRotation(1);
+  ts.setRotation(DISPLAY_ROTATION);
 
   // Start the tft display and set it to black
   tft.init();
@@ -283,7 +283,7 @@ void setup() {
   ledcAttachPin(LCD_BACK_LIGHT_PIN, LEDC_CHANNEL_0);
 #endif
 
-  tft.setRotation(1); //This is the display in landscape (USB to the right)
+  // tft.setRotation(DISPLAY_ROTATION); 
   
   // Clear the screen before writing to it
   tft.fillScreen(TFT_BLACK);
