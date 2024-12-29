@@ -14,7 +14,8 @@ Read more about the CYD board here: https://github.com/witnessmenow/ESP32-Cheap-
 # Basics of this design (so far)
 Instead of fussing with pixel precision, I chose to divide the 320x240 pixel screen area into a 16x16 grid of "cells". Postioning display elements is done by specifying which cell the text or graphical element should start at. This will likely change in the future as this project matures. For now, this is how it works.
 
-Here is an example of several text elements and one VBAR graphical element being positioned on the grid system.
+Here is an example of several text elements and one VBAR graphical element being positioned on the grid system. This layout is simply to verify that I can position elements on the contrived grid. A real/better design may follow. 
+
 ![Grid system for positioning data on the display](src/displays/images/CYD_Display_Scaffold.svg?raw=false)
 
 Here is what it looks like currently with some recently added fields from another SensESP project that I will be sharing sometime soonish.
