@@ -15,10 +15,17 @@ bool sensesp::CYDDisplay::firstRun = false;
 // There is only one display for all the data cells
 TFT_eSPI* sensesp::CYDDisplay::display = NULL;
 
+// Which display mode are we in?
+DisplayMode sensesp::CYDDisplay::displayMode = DisplayMode::DIM_AUTO_NIGHT_VISION_RED;
+
+// What color mode is used to draw elements?
 DisplayColorMode sensesp::CYDDisplay::displayColorMode = DisplayColorMode::NORMAL;
 
 // A flag to clear the screen before initial update to be sure boot messages are gone, etc
 bool sensesp::CYDDisplay::firstUpdate = false;
+
+bool sensesp::CYDDisplay::powerSaveActive = false;
+int sensesp::CYDDisplay::powerSaveLevel = 4; // 4=full(reset on touch), 3=3/4 bright, 2=1/2, 1=1/4, 0=OFF
 
 //////////////////////////////////////////////////////////////
 // CONSTRUCTOR
@@ -174,10 +181,46 @@ void sensesp::CYDDisplay::setBacklight(int backlightBrightness) {
 
     // TODO: check backlightBrightness is in range (0 to 4095), constrain
 
-    if(backlightBrightness <= 1024) {
-        displayColorMode = DisplayColorMode::NIGHT_VISION_RED;
-    } else {
+    // TODO: Determine from current DisplayMode how to set the actual brightness of the backlight here
+    if(displayMode == DisplayMode::STAY_ON_FULL) {
+        // Force NORMAL DisplayColorMode
         displayColorMode = DisplayColorMode::NORMAL;
+
+        // write max duty to LEDC
+        ledcWrite(LEDC_CHANNEL_0, 4095);
+        return;
+    }
+
+    if(displayMode == DisplayMode::DIM_FORCE_RED) {
+        displayColorMode = DisplayColorMode::NIGHT_VISION_RED;
+    }
+    
+    if(displayMode == DisplayMode::DIM_FORCE_GREEN) {
+        displayColorMode = DisplayColorMode::NIGHT_VISION_GREEN;
+    }
+
+    // if(displayMode == DisplayMode::DIM_AUTO_POWER_SAVE) {
+    //     // TODO: Dim on a resettable timer event counter
+    //     // TODO: Dim from set max value?
+
+    //     displayColorMode = DisplayColorMode::NIGHT_VISION_GREEN; // For testing only
+
+    //     // write max duty to LEDC
+    //     ledcWrite(LEDC_CHANNEL_0, 495/2); // For testing only
+    //     return;
+    // }
+    
+    // TODO: Then, determine if any DisplayColorMode's need to be modified, etc.
+    if(displayMode == DisplayMode::DIM_AUTO_NIGHT_VISION_RED || displayMode == DisplayMode::DIM_AUTO_NIGHT_VISION_GREEN) {
+        if(backlightBrightness <= 1024) {
+            if(displayMode == DisplayMode::DIM_AUTO_NIGHT_VISION_RED) {
+                displayColorMode = DisplayColorMode::NIGHT_VISION_RED;
+            } else {
+                displayColorMode = DisplayColorMode::NIGHT_VISION_GREEN;
+            }
+        } else {
+            displayColorMode = DisplayColorMode::NORMAL;
+        }
     }
 
     // write duty to LEDC
@@ -209,6 +252,10 @@ void sensesp::CYDDisplay::button(bool state) {
 uint16_t sensesp::CYDDisplay::displayColor(uint16_t color) {
     if(displayColorMode == DisplayColorMode::NIGHT_VISION_RED) {
         return TFT_RED;
+    }
+
+    if(displayColorMode == DisplayColorMode::NIGHT_VISION_GREEN) {
+        return TFT_GREEN;
     }
 
     return color;

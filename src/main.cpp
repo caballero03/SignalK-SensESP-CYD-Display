@@ -186,13 +186,14 @@ void setup() {
 
   depthListener
     ->connect_to(new CYDDisplay(&tft, DATA_ROW_1, DATA_COL_3, "m", 2))
+    ->connect_to(new CYDDisplay(&tft, DisplayType::VBAR, DATA_ROW_13, DATA_COL_11, 100, "m", 2))
     // Convert meters to feet
     ->connect_to(new Linear(METERS_TO_FEET, 0.0))
     ->connect_to(new CYDDisplay(&tft, DATA_ROW_5, DATA_COL_3, "ft", 2))
     // Adjust for transducer depth below surface (maybe)
     // ->connect_to(new Linear(1.0, 4.5))
     // Let's display a vertical bar chart (VBAR) of this value with a width of 100 pixels (font size of 2 ignored, for now)
-    ->connect_to(new CYDDisplay(&tft, DisplayType::VBAR, DATA_ROW_13, DATA_COL_10, 100, "ft", 2));
+    ->connect_to(new CYDDisplay(&tft, DisplayType::VBAR, DATA_ROW_13, DATA_COL_13, 100, "ft", 2));
 
   /////////////////////////////////////////////
   // Speed through water
@@ -229,7 +230,7 @@ void setup() {
 
   auto* batteryCurrentListener = new FloatSKListener("electrical.batteries.houseBattery.current");
 
-  batteryCurrentListener->connect_to(new CYDDisplay(&tft, DATA_ROW_8, DATA_COL_4, "A", 2));
+  batteryCurrentListener->connect_to(new CYDDisplay(&tft, DATA_ROW_8, DATA_COL_5, "A", 2));
 
   ////////////////////////////////////////////
   // Automatic Backlight Brightness Control
@@ -270,7 +271,7 @@ void setup() {
   // Start the SPI for the touch screen and init the TS library
   mySpi.begin(XPT2046_CLK, XPT2046_MISO, XPT2046_MOSI, XPT2046_CS);
   ts.begin(mySpi);
-  ts.setRotation(1);
+  ts.setRotation(DISPLAY_ROTATION);
 
   // Start the tft display and set it to black
   tft.init();

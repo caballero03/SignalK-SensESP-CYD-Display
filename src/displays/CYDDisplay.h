@@ -84,7 +84,7 @@ enum DisplayMode {
   STAY_ON_FULL,               // Backlight on full brightness and stay that way (max brightness ...and power usage)
   DIM_FORCE_RED,              // Make the screen red no matter dim level
   DIM_FORCE_GREEN,            // Make the screen green no matter dim level
-  DIM_AUTO_POWER_SAVE,        // Gradually dim the screen to off/black (with timer) to save power; touch to wake up
+  //DIM_AUTO_POWER_SAVE,        // Gradually dim the screen to off/black (with timer) to save power; touch to wake up
   DIM_AUTO_NIGHT_VISION_RED,  // Automatically change to red mode when dimmed below configured threshold
   DIM_AUTO_NIGHT_VISION_GREEN // Automatically change to green mode when dimmed below configured threshold
 };
@@ -234,7 +234,10 @@ private:
     static DisplayCell row_col_data[NUM_DISPLAY_COLS][NUM_DISPLAY_ROWS];
     static bool firstRun;
     static bool firstUpdate;
+    static DisplayMode displayMode;
     static DisplayColorMode displayColorMode;
+    static bool powerSaveActive;
+    static int powerSaveLevel;
 };
 
 
