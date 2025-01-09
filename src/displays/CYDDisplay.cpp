@@ -306,10 +306,15 @@ void sensesp::CYDDisplay::updateDisplay() {
                     case DisplayType::VBAR: {
                         display->setTextColor(displayColor(TFT_BLUE), TFT_BLACK);
 
-                        display->setCursor( col*(SCREEN_WIDTH/NUM_DISPLAY_COLS), 
+                        // TODO: -1 cell to center (size 2)text ???
+                        display->setCursor( col*((SCREEN_WIDTH/NUM_DISPLAY_COLS)-1),
                                         row*(SCREEN_HEIGHT/NUM_DISPLAY_ROWS));
-                        // display->setTextSize(this->row_col_data[col][row].fontSize);
-                        display->setTextSize(1); // Small font for VBAR
+                        
+                        display->setTextSize(this->row_col_data[col][row].fontSize);
+                        
+                        // TODO: Always small font for VBAR ???
+                        // display->setTextSize(1);
+
                         display->printf("%0.2f%s  ",  this->row_col_data[col][row].value, 
                                                     this->row_col_data[col][row].unit);
                         
@@ -348,10 +353,10 @@ void sensesp::CYDDisplay::updateDisplay() {
                         //Here we could draw a dial gauge showing the value visually. Math is hard LOL
                         break;
                     }
-                }
-            }
-        }
-    }
+                } // End switch display type
+            } // End if has data
+        } // End row
+    } // End col
 
     // Apply the display updates
     // display->display();
